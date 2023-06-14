@@ -26,3 +26,25 @@ How are you incorporating the Well Architected Framework pillars to produce a hi
 
 My Answer:
 
+![MicrosoftTeams-image (23)](https://github.com/pratham98k/azure-architecture-case-studies/assets/7745943/5ccdfabf-fbb6-4b83-8cba-fd1e60c82c5d)
+
+
+MS answer:
+
+
+![MicrosoftTeams-image (24)](https://github.com/pratham98k/azure-architecture-case-studies/assets/7745943/b4562a6e-4772-4fec-8a8c-3183476646f3)
+
+
+![MicrosoftTeams-image (25)](https://github.com/pratham98k/azure-architecture-case-studies/assets/7745943/2b638802-7637-4ded-bf62-0b93e2b4920e)
+
+
+Here are some more thoughts
+ 
+Front-end tier
+Which Azure compute service would you recommend for the front-end tier? Discuss both the workload hosting and the web application. Explain why you decided on your solution.
+You could use an Azure VM scale set (VMSS) to satisfy the autoscaling requirement. When customer requests increase or decrease, VMSS will automatically scale. It is also recommended to create availability sets or zones.The best choice would be an Azure App Service web app. This web app supports autoscaling and can host a .NET Core-based web app. It would be recommended to use availability zones.To ensure you are solving the problem, Application Monitoring and Application Insights are recommended. These products supply detailed IIS web server/client performance metrics. This will help detect SLA issues and notify those users who have exceeded a threshold while holding for support representative.Would you need both VMSS and App Services scaling?
+ 
+Middle
+Which Azure compute service would you recommend for the middle tier application? Justify your recommendation with proper illustration.
+Azure functions provide the ability to manage message queues, like the customer help desk requests. Functions allow you to write less code, maintain less infrastructure, and save on costs. Instead of worrying about deploying and supporting servers, the cloud infrastructure provides all the up-to-date resources needed • As requests increase, Azure functions meet the demand with as many resources and function instances as necessary - but only while needed. As requests fall, any extra resources and application instances drop off automatically.Azure functions can be triggered by an event. For example, the customer selecting they would like to send email. Also, monitoring and logging are available with Azure functions.API Management should also be considered. APIM would allow for policies such as throttling, caching and authentication. If the middle tier were to expand or move to a microservice model later, APIM would allow for a single frontend access point with flexibility to connect or redirect to many backend API locations. In addition, APIM allows for more logging and visualizations of traffic.
+
